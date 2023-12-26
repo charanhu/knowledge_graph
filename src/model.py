@@ -3,10 +3,12 @@ from dotenv import load_dotenv
 from genai.extensions.langchain import LangChainInterface
 from genai.schemas import GenerateParams
 from genai.credentials import Credentials
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 load_dotenv()
 api_key = os.getenv("GENAI_KEY", None)
 api_url = os.getenv("GENAI_API", None)
+gapi_key = os.getenv("GOOGLE_API_KEY", None)
 
 creds = Credentials(api_key, api_endpoint=api_url)
 
@@ -31,5 +33,7 @@ params_1 = GenerateParams(
 # )
 
 llm_1 = LangChainInterface(model=model_id, params=params_1, credentials=creds)
+
+g_llm = ChatGoogleGenerativeAI(model="gemini-pro")
 
 # llm_2 = LangChainInterface(model=model_id, params=params_2, credentials=creds)
